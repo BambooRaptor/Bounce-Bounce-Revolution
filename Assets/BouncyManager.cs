@@ -37,6 +37,7 @@ public class BouncyManager : MonoBehaviour
         switch (drawingPhase)
         {
             case InputActionPhase.Canceled:
+                if (platformExists) platformVisual.StopDrawingPlatform();
                 platformExists = false;
                 break;
             case InputActionPhase.Performed:
@@ -46,7 +47,7 @@ public class BouncyManager : MonoBehaviour
                 }
                 platformExists = true;
                 endPoint = currentMousePos;
-                platformVisual.SetPlatformPositions(endPoint);
+                platformVisual.SetPlatformPosition(endPoint);
                 break;
             default:
                 break;

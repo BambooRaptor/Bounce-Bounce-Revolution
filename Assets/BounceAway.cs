@@ -8,6 +8,10 @@ public class BounceAway : MonoBehaviour
     [SerializeField] float minForce;
     [SerializeField] float maxForce;
 
+    // [Header("Direction")]
+    // [SerializeField] bool randomizeDirection;
+    // [SerializeField] [Range(0, 1)] float directionIntensity;
+
     public void OnHit(Collision2D body) {
         // // Calculate Angle Between the collision point and the player
         //  Vector3 dir = c.contacts[0].point - transform.position;
