@@ -23,7 +23,7 @@ public class BouncyManager : MonoBehaviour
     }
 
     public void onMouseEvent(InputAction.CallbackContext context) {
-        Debug.Log("Mouse Pressed");
+        // Debug.Log("Mouse Pressed");
         // Debug.Log(context.phase);
 
         drawingPhase = context.phase;
@@ -38,27 +38,15 @@ public class BouncyManager : MonoBehaviour
         {
             case InputActionPhase.Canceled:
                 platformExists = false;
-                // if (platformExists) break;
-                // startPlatformPoint.position = currentMousePos;
-                // endPlatformPoint.position = currentMousePos;
                 break;
-            // case InputActionPhase.Started:
-            //     Debug.Log(drawingPhase);
-            //     platformExists = true;
-            //     startPoint = currentMousePos;
-            //     break;
             case InputActionPhase.Performed:
-                // Debug.Log(drawingPhase);
-
                 if (!platformExists) {
                     startPoint = currentMousePos;
-                    // startPlatformPoint.position = currentMousePos;
-                    Debug.Log("Starting new platform");
+                    platformVisual.StartDrawingPlatform(startPoint);
                 }
                 platformExists = true;
                 endPoint = currentMousePos;
-                // endPlatformPoint.position = currentMousePos;
-                platformVisual.SetPlatformPositions(startPoint, endPoint);
+                platformVisual.SetPlatformPositions(endPoint);
                 break;
             default:
                 break;
