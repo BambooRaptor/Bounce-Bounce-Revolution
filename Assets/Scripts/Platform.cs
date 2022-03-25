@@ -23,6 +23,8 @@ public class Platform : MonoBehaviour
 
     [Header("Events")]
     [SerializeField] UnityEvent onBallCollision;
+
+    // Serialize When Needed
     [SerializeField] PlatformEvent onDrawStart;
     [SerializeField] PlatformEvent whileDrawing;
     [SerializeField] PlatformEvent onDrawEnd;
@@ -67,7 +69,7 @@ public class Platform : MonoBehaviour
         boxCollider.enabled = true;
         StartingPosition = startPos;
         // startPlatformPoint.localPosition = Vector3.zero;
-        lineRenderer.SetPosition(0, Vector3.zero);
+        // lineRenderer.SetPosition(0, Vector3.zero);
         onDrawStart.Invoke(StartingPosition, EndingPosition);
     }
 
@@ -81,13 +83,17 @@ public class Platform : MonoBehaviour
 
         EndingPosition = endPos;
 
-        lineRenderer.SetPosition(1, new Vector3(0, lineLength, 0));
+        Debug.Log("Starting Position: " + StartingPosition + "\n" + "Ending Position: " + EndingPosition);
+        Debug.Log("Line Length: " + lineLength);
+
+
+        // lineRenderer.SetPosition(1, new Vector3(0, lineLength, 0));
 
         boxCollider.size = new Vector2(0.1f, lineLength);
         boxCollider.offset = new Vector3(0, lineLength / 2);
 
         transform.position = startingPosition;
-        transform.rotation = Quaternion.FromToRotation(Vector2.up, endPos - StartingPosition);
+        transform.rotation = Quaternion.FromToRotation(Vector2.up, EndingPosition - StartingPosition);
 
         whileDrawing.Invoke(StartingPosition, EndingPosition);
 
